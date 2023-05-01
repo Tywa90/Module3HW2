@@ -90,7 +90,7 @@ namespace Dictionary
                 }
             }
 
-            _key = "#";
+            _key = _keyOthers;
             if (_tempList.Count > 0)
             {
                 _dictionary.Add(_key, _tempList);

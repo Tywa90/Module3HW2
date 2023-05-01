@@ -47,8 +47,6 @@ namespace Dictionary
                     Console.WriteLine(item.Value[i]);
                 }
             }
-
-            Console.WriteLine();
         }
     }
 }
