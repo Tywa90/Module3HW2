@@ -11,7 +11,6 @@ namespace Dictionary
         private string _key;
         private string _alfabetUS = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
         private string _alfabetUA = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЬЮЯ";
-        private string _keyDigit = "0-9";
         private List<User> _userCollection;
         private List<User> _tempListUS = new List<User>();
         private List<User> _tempListUA = new List<User>();
@@ -59,6 +58,7 @@ namespace Dictionary
             {
                 AlfabetKeysUS(_tempListUS);
             }
+
             if (_tempListUA.Count > 0)
             {
                 AlfabetKeysUA(_tempListUA);
@@ -98,6 +98,7 @@ namespace Dictionary
                 }
             }
         }
+
         public void AlfabetKeysUA(List<User> users)
         {
             for (int i = 0; i < _alfabetUA.Length; i++)
