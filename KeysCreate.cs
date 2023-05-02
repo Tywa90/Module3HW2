@@ -10,9 +10,11 @@ namespace Dictionary
     {
         private string _key;
         private string _alfabetUS = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+        private string _alfabetUA = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЬЮЯ";
         private string _keyDigit = "0-9";
         private List<User> _userCollection;
-        private List<User> _tempList = new List<User>();
+        private List<User> _tempListUS = new List<User>();
+        private List<User> _tempListUA = new List<User>();
         private List<User> _tempListOther = new List<User>();
         private List<User> _tempListDigits = new List<User>();
         private Dictionary<string, List<User>> _dictionary;
@@ -35,9 +37,14 @@ namespace Dictionary
                         _tempListDigits.Add(_userCollection[i]);
                         break;
                     }
-                    else if (IfAlfabet(_key))
+                    else if (IfAlfabetUS(_key))
                     {
-                        _tempList.Add(_userCollection[i]);
+                        _tempListUS.Add(_userCollection[i]);
+                        break;
+                    }
+                    else if (IfAlfabetUA(_key))
+                    {
+                        _tempListUA.Add(_userCollection[i]);
                         break;
                     }
                     else
@@ -48,9 +55,13 @@ namespace Dictionary
                 }
             }
 
-            if (_tempList.Count > 0)
+            if (_tempListUS.Count > 0)
             {
-                AlfabetKeysUS(_tempList);
+                AlfabetKeysUS(_tempListUS);
+            }
+            if (_tempListUA.Count > 0)
+            {
+                AlfabetKeysUA(_tempListUA);
             }
 
             if (_tempListDigits.Count > 0)
@@ -87,12 +98,46 @@ namespace Dictionary
                 }
             }
         }
+        public void AlfabetKeysUA(List<User> users)
+        {
+            for (int i = 0; i < _alfabetUA.Length; i++)
+            {
+                List<User> temp = new List<User>();
+                for (int j = 0; j < users.Count; j++)
+                {
+                    _key = users[j].Name[0].ToString();
+                    if (_key.Contains(_alfabetUA[i]))
+                    {
+                        temp.Add(users[j]);
+                    }
+                }
 
-        public bool IfAlfabet(string key)
+                _key = _alfabetUA[i].ToString();
+                if (temp.Count > 0)
+                {
+                    _dictionary.Add(_key, temp);
+                }
+            }
+        }
+
+        public bool IfAlfabetUS(string key)
         {
             for (int i = 0; i < _alfabetUS.Length; i++)
             {
                 if (key == _alfabetUS[i].ToString())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IfAlfabetUA(string key)
+        {
+            for (int i = 0; i < _alfabetUA.Length; i++)
+            {
+                if (key == _alfabetUA[i].ToString())
                 {
                     return true;
                 }
