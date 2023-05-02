@@ -26,13 +26,14 @@ namespace Dictionary
             userCollection.Add(new User() { Name = "Dan" });
             userCollection.Add(new User() { Name = "8Miles" });
             userCollection.Add(new User() { Name = "Alex" });
+            userCollection.Add(new User() { Name = "Евген" });
 
             userCollection.Sort();
 
             var dictionary = new Dictionary<string, List<User>>();
 
-            CategoryKeys keys = new CategoryKeys(userCollection, dictionary);
-            keys.KeysCreat();
+            KeysCreate keys = new KeysCreate(userCollection, dictionary);
+            keys.Creat();
 
             foreach (var item in dictionary)
             {
